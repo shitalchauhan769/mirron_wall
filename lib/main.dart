@@ -5,6 +5,7 @@ import 'package:mirror_wall_app/until/routes.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(
       providers: [
