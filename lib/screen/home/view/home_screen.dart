@@ -118,21 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             refreshController?.endRefreshing();
                           }
                         })),
-                SearchBar(
-                  onTap: () {},
-                  onChanged: (value) {},
-                  leading: const Row(
-                    children: [
-                      Icon(Icons.search),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      // TextFormField(
-                      //   decoration: const InputDecoration(label: Text("Search")),
-                      // )
-                    ],
-                  ),
-                )
+
               ],
             )
           : const NetworkWidget(),
