@@ -18,10 +18,12 @@ class _HomeScreenState extends State<HomeScreen> {
   HomeProvider? providerR;
   InAppWebViewController? webView;
   PullToRefreshController? refreshController;
+  TextEditingController txtSearch=TextEditingController();
+
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     context.read<HomeProvider>().onProgress();
     refreshController = PullToRefreshController(
@@ -108,9 +110,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         onLoadStop: (controller, url) {
                           webView = controller;
                         },
-                        pullToRefreshController: PullToRefreshController(
-                          onRefresh: () {},
-                        ),
+                        pullToRefreshController: refreshController,
+
                         onProgressChanged: (controller, progress) {
                           providerR!.checkLinearPrograss(progress / 100);
                           webView = controller;
@@ -118,6 +119,21 @@ class _HomeScreenState extends State<HomeScreen> {
                             refreshController?.endRefreshing();
                           }
                         })),
+                SearchBar(controller: txtSearch,
+                  onTap: () {
+                   webView!.loadUrl(urlRequest:URLRequest(url: WebUri("${providerW!.sSearch}${txtSearch.text}")));
+
+                  },
+                  leading: Row(
+                    children: [
+
+                      IconButton(onPressed: () {
+
+                      }, icon:Icon(Icons.search))
+                    ],
+                  ),
+                )
+
 
               ],
             )
@@ -190,6 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   value: "Google",
                   groupValue: providerW!.isChoice,
                   onChanged: (value) {
+                    providerR!.changSearchbar("https://www.google.com", "https://www.google.com/search?q=google");
                     providerR!.checkUi(value);
                     webView!.loadUrl(
                       urlRequest: URLRequest(

@@ -5,8 +5,7 @@ class NetworkProvider with ChangeNotifier
   Connectivity connectivity=Connectivity();
   bool isInterNet=true;
   Future<void> checkConnectivity() async {
-    Connectivity().onConnectivityChanged.listen(
-          (event) {
+    Connectivity().onConnectivityChanged.listen((event) {
         if (event.contains(ConnectivityResult.none)) {
           isInterNet = false;
           //no internet

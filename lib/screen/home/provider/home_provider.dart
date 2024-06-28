@@ -10,6 +10,15 @@ class HomeProvider with ChangeNotifier
   bool isOnline=true;
   Connectivity connectivity =Connectivity();
   List<String> bookMark=[];
+  String sSearch="https://www.google.com";
+  String eSearch="https://www.google.com/search?q=google";
+
+  void changSearchbar(String s1,String e1)
+  {
+    sSearch =s1;
+    eSearch=e1;
+    notifyListeners();
+  }
 
 
   void  onProgress()
